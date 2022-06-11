@@ -1,26 +1,47 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="d-flex">
+    <navbar class="navbar" />
+    <sidebar class="sidebar" @changeSecurity="changeSecurity($event)"/>
+    <div class="d-flex flex-column right">
+      <upperbar />
+      <chart :security="security"/>
+      <infoField class="info" />
+    </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import navbar from "./components/navBar.vue";
+import sidebar from "./components/sideBar.vue";
+import upperbar from "./components/upperBar.vue";
+import chart from "./components/chartComp.vue";
+import infoField from "./components/infoField.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
+    navbar,
+    sidebar,
+    upperbar,
+    chart,
+    infoField,
+  },
+  data() {
+    return {
+      security: null
+    };
+  },
+methods:{
+    changeSecurity(security)
+    {
+      this.security=security;
+    },
 }
+};
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.right {
+  width: 100%;
 }
 </style>
