@@ -4,7 +4,7 @@
     <sidebar class="sidebar" @changeSecurity="changeSecurity($event)"/>
     <div class="d-flex flex-column right">
       <upperbar />
-      <chart :security="security"/>
+      <chart :security="security" :key="0"/>
       <infoField class="info" />
     </div>
   </div>

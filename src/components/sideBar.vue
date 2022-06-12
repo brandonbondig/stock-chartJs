@@ -8,9 +8,10 @@
         text-center
         justify-content-center
         form
+        mt-3
       "
     >
-      <p class="m-0">Security</p>
+      <p class="">Security</p>
       <input
         type="text"
         style="text-transform: uppercase"
@@ -46,10 +47,14 @@ export default {
   background-color: #d9d9d9;
   height: 100vh;
   width: 350px;
+  z-index: 999;
+  box-shadow: 8px 0px 18px 0px rgba(0,0,0,0.35);
+  
 }
 input {
   width: 75%;
   margin: auto;
+  border-radius: 15px;
 }
 
 button {
