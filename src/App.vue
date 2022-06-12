@@ -1,10 +1,10 @@
 <template>
   <div class="d-flex">
     <navbar class="navbar" />
-    <sidebar class="sidebar" @changeSecurity="changeSecurity($event)"/>
+    <sidebar class="sidebar" @changeSecurity="changeSecurity($event)" @changeTimeseries="changeTimeseries($event)"/>
     <div class="d-flex flex-column right">
       <upperbar />
-      <chart :security="security" :key="0"/>
+      <chart :security="security" :key="chart" :timeseries="timeseries"/>
       <infoField class="info" />
     </div>
   </div>
@@ -28,13 +28,21 @@ export default {
   },
   data() {
     return {
-      security: null
+      security: "SPY",
+      timeseries:1000,
+      chart: 0
     };
   },
 methods:{
     changeSecurity(security)
     {
       this.security=security;
+      this.chart += 1
+    },
+    changeTimeseries(timeseries)
+    {
+      this.timeseries=timeseries;
+      this.chart += 1
     },
 }
 };

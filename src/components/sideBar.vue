@@ -15,13 +15,20 @@
       <input
         type="text"
         style="text-transform: uppercase"
-        v-on:keyup.enter="onClickButton"
+        v-on:keyup.enter="updateChart"
         placeholder="e.g SPY"
         class="form-control"
         v-model="security"
       />
-      <p style="cursor: pointer; font-weight: bold">+ Add more</p>
-      <button class="btn btn-success" @click="onClickButton">search</button>
+      <p class="mt-3">Timeseries (days)</p>
+      <input
+        type="text"
+        v-on:keyup.enter="updateChart"
+        placeholder="e.g 5"
+        class="form-control mb-3"
+        v-model="timeseries"
+      />
+      <button class="btn btn-success" @click="updateChart">search</button>
     </div>
   </div>
 </template>
@@ -32,11 +39,13 @@ export default {
   data() {
     return {
       security: "",
+      timeseries: null,
     };
   },
   methods: {
-    onClickButton() {
+    updateChart() {
       this.$emit("changeSecurity", this.security);
+      this.$emit("changeTimeseries", this.timeseries);
     },
   },
 };
@@ -48,8 +57,7 @@ export default {
   height: 100vh;
   width: 350px;
   z-index: 999;
-  box-shadow: 8px 0px 18px 0px rgba(0,0,0,0.35);
-  
+  box-shadow: 8px 0px 18px 0px rgba(0, 0, 0, 0.35);
 }
 input {
   width: 75%;

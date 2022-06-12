@@ -36,13 +36,16 @@ ChartJS.register(
 
 export default {
   name: "chart",
-  props: ['security'],
+  props: ['security', 'timeseries'],
   components:{Line},
   data() {
     return {
       chartOptions: {
-        scales: {
-        },
+        scales: { //hides the y axis
+            yAxes: [{
+               display: false
+            }]
+         },
         legend: {
           display: false,
         },
@@ -67,14 +70,12 @@ export default {
     this.loaded = false;
 
     //stock api
-    const stock = await axios.get(`https://financialmodelingprep.com/api/v3/historical-price-full/AAPL?timeseries=100&apikey=a695b9febb89a33c6e4362da9ffcdf5b`)
+    const stock = await axios.get(`https://financialmodelingprep.com/api/v3/historical-price-full/${this.security}?timeseries=${this.timeseries}&apikey=${process.env.VUE_APP_API_KEY}`)
 
     stock.data.historical.forEach((d)=>{
       this.price.push(d.close)
       this.label.push(d.date)
     })
-    
-    console.log(this.price);
 
     this.chartData = {
       labels: this.label.reverse(),
