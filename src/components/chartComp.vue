@@ -5,7 +5,7 @@
       :chart-data="chartData"
       :chart-options="chartOptions"
       :styles="styles"
-    />
+     class="chart"/>
   </div>
 </template>
 
@@ -46,18 +46,18 @@ export default {
           //hides the y axis
           y: {
             grid: {
-              color: "#F4F5F7",
-              borderColor: "white",
+              color: "#383838",
+              borderColor: '#2D2D2D',
             },
           },
           x: {
             grid: {
               display: false,
-              borderColor: "black",
+              borderColor: '#383838',
             },
           },
+          
         },
-
         maintainAspectRatio: false,
       },
       label: [],
@@ -92,9 +92,11 @@ export default {
       labels: this.label.reverse(),
       datasets: [
         {
+          backgroundColor: '#2D2D2D',
           label: this.security,
           data: this.price.reverse(),
-          borderColor: "#000000",
+          borderColor: "#BB86FC",
+          backgroundColor: '#2D2D2D',
           tension: 0.1,
           pointRadius: 0,
           borderWidth: 2,
@@ -111,5 +113,9 @@ export default {
   background-color: #ffffff;
   height: 60%;
   width: 100%;
+}
+
+.chart{
+  background-color: #2D2D2D;
 }
 </style>

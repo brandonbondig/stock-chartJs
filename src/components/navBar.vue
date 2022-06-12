@@ -17,7 +17,7 @@ export default {
 
 <style lang="scss" scoped>
 .body {
-  background-color: #D9D9D9;
+  background-color: #121212;
   height: 100vh;
   width: 100px;
   border:solid;
@@ -39,7 +39,7 @@ img {
  width: 2em;
  margin: 1em;
  cursor: pointer;
-
+filter: invert(100%) sepia(0%) saturate(1046%) hue-rotate(138deg) brightness(100%) contrast(10%);
 }
 
 

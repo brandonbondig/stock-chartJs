@@ -28,7 +28,7 @@
         class="form-control mb-3"
         v-model="timeseries"
       />
-      <button class="btn btn-success" @click="updateChart">search</button>
+      <button class="btn" style="background-color:#BB86FC; font-weight: bold; color: #262626; border-radius: 15px;" @click="updateChart">Search</button>
     </div>
   </div>
 </template>
@@ -53,7 +53,7 @@ export default {
 
 <style lang="scss" scoped>
 .body {
-  background-color: #d9d9d9;
+  background-color: #1e1e1e;
   height: 100vh;
   width: 350px;
   z-index: 999;
@@ -63,6 +63,14 @@ input {
   width: 75%;
   margin: auto;
   border-radius: 15px;
+  background-color: #585858;
+  border-color: #1e1e1e;
+}
+
+
+
+p{
+  color: white;
 }
 
 button {

@@ -12,7 +12,7 @@ export default {
 
 <style lang="scss" scoped>
 .body {
-  background-color: #d9d9d9;
+  background-color: #121212;
   height: 30%;
 }
 </style>
