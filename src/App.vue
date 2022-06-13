@@ -1,12 +1,25 @@
 <template>
   <div class="d-flex">
-    <navbar class="navbar" />
-    <sidebar class="sidebar" @changeSecurity="changeSecurity($event)" @changeTimeseries="changeTimeseries($event)"/>
-    <div class="d-flex flex-column right">
+    <navbar class="navbar" @gotoMenu="gotoMenu($emit)" @gotoBook="gotoBook($emit)" :menuActive="menu"
+      :bookActive="strategy" :communityActive="community" @gotoCommunity="gotoCommunity($emit)" />
+    <sidebar class="sidebar" @changeSecurity="changeSecurity($event)" @changeTimeseries="changeTimeseries($event)" />
 
-      <chart :security="security" :key="chart" :timeseries="timeseries"/>
+    <!-- Menu section-->
+    <div v-if="menu" class="d-flex flex-column right">
+      <chart :security="security" :key="chart" :timeseries="timeseries" />
       <infoField class="info" />
     </div>
+
+    <!-- Book section -->
+    <div v-if="strategy" class="d-flex flex-column right">
+      <strategy />
+    </div>
+
+    <!-- Community section -->
+    <div v-if="community" class="d-flex flex-column right">
+      <community />
+    </div>
+
   </div>
 </template>
 
@@ -15,40 +28,65 @@ import navbar from "./components/navBar.vue";
 import sidebar from "./components/sideBar.vue";
 import chart from "./components/chartComp.vue";
 import infoField from "./components/infoField.vue";
+import strategy from "./components/sections/strategySection.vue"
+import community from './components/sections/communitySection.vue'
 
 export default {
   name: "App",
   components: {
     navbar,
     sidebar,
-
+    strategy,
+    community,
     chart,
     infoField,
   },
+  // Data
   data() {
     return {
       security: "SPY",
-      timeseries:1000,
-      chart: 0
+      timeseries: 1000,
+      chart: 0,
+      menu: true,
+      strategy: false,
+      community: false,
     };
   },
-methods:{
-    changeSecurity(security)
-    {
-      this.security=security;
+  methods: {
+
+    // Change stock ticker and timeseries
+    changeSecurity(security) {
+      this.security = security;
       this.chart += 1
     },
-    changeTimeseries(timeseries)
-    {
-      this.timeseries=timeseries;
+    changeTimeseries(timeseries) {
+      this.timeseries = timeseries;
       this.chart += 1
     },
-}
+
+    // Go to menus ( Main menu, Strategy, Community )
+    gotoMenu() {
+      this.menu = true
+      this.strategy = false
+      this.community = false
+    },
+    gotoBook() {
+      this.strategy = true
+      this.community = false
+      this.menu = false
+    },
+    gotoCommunity() {
+      this.community = true
+      this.strategy = false
+      this.menu = false
+      console.log(this.community);
+    },
+
+  }
 };
 </script>
 
 <style lang="scss">
-
 .right {
   width: 100%;
 }

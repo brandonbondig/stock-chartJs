@@ -1,14 +1,9 @@
 <template>
   <div class="body">
-   
-    <Line
-      v-if="loaded"
-      :chart-data="chartData"
-      :chart-options="chartOptions"
-      :styles="styles"
-     class="chart"/>
-      
-      <div v-if="!loaded" class="lds-dual-ring"></div>
+
+    <Line v-if="loaded" :chart-data="chartData" :chart-options="chartOptions" :styles="styles" class="chart" />
+
+    <div v-if="!loaded" class="lds-dual-ring"></div>
 
   </div>
 
@@ -61,7 +56,7 @@ export default {
               borderColor: '#383838',
             },
           },
-          
+
         },
         maintainAspectRatio: false,
       },
@@ -92,7 +87,7 @@ export default {
       this.price.push(d.close);
       this.label.push(d.date);
     });
-    
+
     this.chartData = {
       labels: this.label.reverse(),
       datasets: [
@@ -104,7 +99,7 @@ export default {
           backgroundColor: '#2D2D2D',
           tension: 0.1,
           pointRadius: 0,
-          borderWidth: 2,
+          borderWidth: 3,
         },
       ],
     };
@@ -121,7 +116,7 @@ export default {
   z-index: 100;
 }
 
-.chart{
+.chart {
   background-color: #2D2D2D;
 }
 
@@ -131,8 +126,9 @@ export default {
   height: 80px;
   margin-left: 50%;
   margin-top: 15%;
-  
+
 }
+
 .lds-dual-ring:after {
   content: " ";
   display: block;
@@ -144,10 +140,12 @@ export default {
   border-color: #fff transparent #fff transparent;
   animation: lds-dual-ring 1.2s linear infinite;
 }
+
 @keyframes lds-dual-ring {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
