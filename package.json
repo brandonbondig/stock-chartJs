@@ -14,7 +14,8 @@
     "dotenv": "^16.0.1",
     "vue": "^3.2.13",
     "vue-axios-cors": "^1.0.1",
-    "vue-chartjs": "^4.1.1"
+    "vue-chartjs": "^4.1.1",
+    "vue-dropdowns": "^1.1.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~5.0.0",

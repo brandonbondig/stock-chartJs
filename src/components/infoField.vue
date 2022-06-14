@@ -8,18 +8,18 @@
       </div>
 
       <div>
-        <h1>Asset Price</h1>
+        <h1>Price</h1>
         <p>${{ price }} </p>
       </div>
 
       <div>
-        <h1>Asset Change</h1>
-        <p>${{ change }}</p>
+        <h1>Change</h1>
+        <p class="changeColor" :class="{ active: changeColor }">${{ change }}</p>
       </div>
 
       <div>
         <h1>Percent Change</h1>
-        <p>{{ changeP }}%</p>
+        <p class="changeColor" :class="{ active: changeColor }">{{ changeP }}%</p>
       </div>
 
       <div>
@@ -46,7 +46,8 @@ export default {
       change: 0,
       name: '',
       exchange: '',
-      price: 0
+      price: 0,
+      changeColor: null,
 
     }
   },
@@ -65,6 +66,13 @@ export default {
     this.exchange = data.data[0]['exchange']
     this.price = parseFloat(data.data[0]['price']).toFixed(2)
 
+    if(this.changeP > 1){
+      this.changeColor = false
+    }else{
+      this.changeColor = true
+    }
+
+
     this.loaded = true;
 
   },
@@ -73,6 +81,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+
+
 .body {
   background-color: #2D2D2D;
   z-index: 998;
@@ -95,8 +106,17 @@ h1 {
   color: #646464;
 }
 
-div:not(.body .companyInfo){
+div:not(.body .companyInfo) {
   margin-right: 1em;
   text-align: center;
 }
+
+.changeColor{
+  color: rgb(69, 215, 69);
+}
+.active{
+  color: rgb(255, 60, 60) !important;
+}
+
+
 </style>

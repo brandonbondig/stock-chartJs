@@ -1,8 +1,12 @@
 <template>
+  <getIndicator :stock="'SPY'" :period="14" :indicator="indicator.toLocaleLowerCase()" :key="chart" />
+
   <div class="d-flex">
     <navbar class="navbar" @gotoMenu="gotoMenu($emit)" @gotoBook="gotoBook($emit)" :menuActive="menu"
       :bookActive="strategy" :communityActive="community" @gotoCommunity="gotoCommunity($emit)" />
-    <sidebar class="sidebar" @changeSecurity="changeSecurity($event)" @changeTimeseries="changeTimeseries($event)" />
+
+    <sidebar class="sidebar" @changeIndicator="changeIndicator($event)" @changeSecurity="changeSecurity($event)"
+      @changeTimeseries="changeTimeseries($event)" />
 
     <!-- Menu section-->
     <div v-if="menu" class="d-flex flex-column right">
@@ -22,7 +26,9 @@
     </div>
 
   </div>
+
 </template>
+
 
 <script>
 import navbar from "./components/navBar.vue";
@@ -31,6 +37,7 @@ import chart from "./components/chartComp.vue";
 import infoField from "./components/infoField.vue";
 import strategy from "./components/sections/strategySection.vue"
 import community from './components/sections/communitySection.vue'
+import getIndicator from './components/getIndicator.vue'
 
 export default {
   name: "App",
@@ -41,6 +48,7 @@ export default {
     community,
     chart,
     infoField,
+    getIndicator
   },
   // Data
   data() {
@@ -51,6 +59,8 @@ export default {
       menu: true,
       strategy: false,
       community: false,
+      indicator: '',
+
     };
   },
   methods: {
@@ -64,7 +74,6 @@ export default {
       this.timeseries = timeseries;
       this.chart += 1
     },
-
     // Go to menus ( Main menu, Strategy, Community )
     gotoMenu() {
       this.menu = true
@@ -80,14 +89,22 @@ export default {
       this.community = true
       this.strategy = false
       this.menu = false
-      console.log(this.community);
-    },
 
+    },
+    changeIndicator(indicator) {
+      this.indicator = indicator
+    }
   }
 };
 </script>
 
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+#app {
+  font-family: 'Roboto', sans-serif;
+}
+
 .right {
   width: 100%;
 }
