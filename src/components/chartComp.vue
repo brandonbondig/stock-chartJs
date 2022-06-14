@@ -42,6 +42,10 @@ export default {
   data() {
     return {
       chartOptions: {
+        interaction: {
+          mode: 'index',
+          intersect: false,
+        },
         scales: {
           //hides the y axis
           y: {
@@ -109,9 +113,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .body {
-  background-color: #262626;
-  height: 70%;
+  background-color: #2D2D2D;
+  height: 90%;
   width: 100%;
   z-index: 100;
 }

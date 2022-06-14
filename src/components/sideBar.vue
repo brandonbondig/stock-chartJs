@@ -8,7 +8,7 @@
         justify-content-center
         form mt-3">
       <p class="">Security</p>
-      <input type="text" style="text-transform: uppercase" v-on:keyup.enter="updateChart" placeholder="e.g SPY"
+      <input type="text" v-on:keyup.enter="updateChart" placeholder="e.g SPY"
         class="form-control" v-model="security"/>
       <p class="mt-3">Timeseries (days)</p>
 
@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     updateChart() {
-      this.$emit("changeSecurity", this.security);
+      this.$emit("changeSecurity", this.security.toUpperCase());
       this.$emit("changeTimeseries", this.timeseries);
     },
   },

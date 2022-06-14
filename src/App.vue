@@ -6,8 +6,9 @@
 
     <!-- Menu section-->
     <div v-if="menu" class="d-flex flex-column right">
+      <infoField class="info" :security="security" :key="chart" />
       <chart :security="security" :key="chart" :timeseries="timeseries" />
-      <infoField class="info" />
+
     </div>
 
     <!-- Book section -->
