@@ -1,18 +1,15 @@
 <template>
-  <getIndicator :stock="'SPY'" :period="14" :indicator="indicator.toLocaleLowerCase()" :key="chart" />
-
   <div class="d-flex">
     <navbar class="navbar" @gotoMenu="gotoMenu($emit)" @gotoBook="gotoBook($emit)" :menuActive="menu"
       :bookActive="strategy" :communityActive="community" @gotoCommunity="gotoCommunity($emit)" />
 
     <sidebar class="sidebar" @changeIndicator="changeIndicator($event)" @changeSecurity="changeSecurity($event)"
-      @changeTimeseries="changeTimeseries($event)" />
+      @changeTimeseries="changeTimeseries($event)" @period="getPeriod" />
 
     <!-- Menu section-->
     <div v-if="menu" class="d-flex flex-column right">
       <infoField class="info" :security="security" :key="chart" />
-      <chart :security="security" :key="chart" :timeseries="timeseries" />
-
+      <chart :security="security" :key="chart" :timeseries="timeseries" :indicator="indicator" :period="period" />
     </div>
 
     <!-- Book section -->
@@ -37,7 +34,7 @@ import chart from "./components/chartComp.vue";
 import infoField from "./components/infoField.vue";
 import strategy from "./components/sections/strategySection.vue"
 import community from './components/sections/communitySection.vue'
-import getIndicator from './components/getIndicator.vue'
+
 
 export default {
   name: "App",
@@ -48,7 +45,7 @@ export default {
     community,
     chart,
     infoField,
-    getIndicator
+
   },
   // Data
   data() {
@@ -59,8 +56,8 @@ export default {
       menu: true,
       strategy: false,
       community: false,
-      indicator: '',
-
+      indicator: null,
+      period: null
     };
   },
   methods: {
@@ -92,7 +89,16 @@ export default {
 
     },
     changeIndicator(indicator) {
-      this.indicator = indicator
+      this.indicator = indicator.toLowerCase()
+      console.log(indicator);
+    },
+    getIndicator(indicator) {
+      this.choosenIndicator = indicator
+      console.log(indicator);
+    },
+    getPeriod(period) {
+      this.period = period
+      console.log(period);
     }
   }
 };

@@ -5,7 +5,7 @@
 
     <div v-if="!loaded" class="lds-dual-ring"></div>
 
-    
+
   </div>
 
 </template>
@@ -38,7 +38,7 @@ ChartJS.register(
 
 export default {
   name: "chart",
-  props: ["security", "timeseries"],
+  props: ["security", "timeseries", 'indicator','period'],
   components: { Line },
   data() {
     return {
@@ -67,6 +67,7 @@ export default {
       },
       label: [],
       price: [],
+      indicatorPrice: [],
       loaded: false,
       chartData: null,
     };
@@ -93,6 +94,18 @@ export default {
       this.label.push(d.date);
     });
 
+    // indicator api
+    if (this.indicator != null) {
+      const { data } = await axios.get(
+        `https://financialmodelingprep.com/api/v3/technical_indicator/daily/${this.security}?period=${this.period}&type=${this.indicator}&apikey=${process.env.VUE_APP_API_KEY}`
+      );
+      let res = data.slice(0, this.timeseries)
+
+      res.forEach((d) => {
+        this.indicatorPrice.push(d[this.indicator])
+      })
+    }
+
     this.chartData = {
       labels: this.label.reverse(),
       datasets: [
@@ -106,6 +119,15 @@ export default {
           pointRadius: 0,
           borderWidth: 3,
         },
+        {
+          data: this.indicatorPrice.reverse(),
+          label:this.indicator,
+          borderColor: "#FF0000",
+          backgroundColor: '#2D2D2D',
+          tension: 0.1,
+          pointRadius: 0,
+          borderWidth: 3,
+        }
       ],
     };
     this.loaded = true;
@@ -114,7 +136,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .body {
   background-color: #2D2D2D;
   height: 90%;
