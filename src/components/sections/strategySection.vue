@@ -1,6 +1,6 @@
 <template>
     <div>
-        HELLO STRATEGY
+        STRATEGY SECTION
     </div>
 </template>
 
@@ -11,5 +11,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 </style>

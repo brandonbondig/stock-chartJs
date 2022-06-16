@@ -1,6 +1,6 @@
 <template>
     <div>
-        HELLO COMMUNITY
+        COMMUNITY SECTION
     </div>
 </template>
 
