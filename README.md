@@ -1,5 +1,5 @@
 # Stock Chart
-Simple stock chart visualizer made in Vue.js: https://vuejs.org/ using API data from https://financialmodelingprep.com. Charts are generated with the Charts.js library: https://www.chartjs.org/.
+Simple stock chart visualizer made in [Vue.js](https://vuejs.org/)  using API data from [financialmodelingprep](https://financialmodelingprep.com). Charts are generated with the [Charts.js](https://www.chartjs.org/) library: .
 
 ![Test Image 4](https://github.com/brandonbondig/stock-ChartJs/blob/master/src/assets/bondigstockchart.png)
 
